@@ -1,0 +1,2 @@
+#!/bin/bash
+mkdir -p cache/functions 2> /dev/null
