@@ -2,6 +2,7 @@
     "require": {
         "bubujka/def": "dev-master",
         "bubujka/common": "dev-master",
-        "php-activerecord/php-activerecord": "*"
+        "php-activerecord/php-activerecord": "*",
+        "symfony/yaml": "2.4.*"
     }
 }
