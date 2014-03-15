@@ -5,3 +5,15 @@ json_controller('get_point_height', function(){
   // RESPOND: 205
   return earthtools\get_point_height($_GET['latitude'], $_GET['longitude']);
 });
+
+json_controller('height_requests_count', function(){
+  // REQUEST: /height_requests_count
+  // RESPOND: 6
+  return (int)HeightRequest::count();
+});
+
+json_controller('top_highest_count', function(){
+  // REQUEST: /top_highest_count
+  // RESPOND: 3
+  return HeightRequest::count_highest();
+});
