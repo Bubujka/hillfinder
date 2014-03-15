@@ -1,0 +1,7 @@
+{
+    "require": {
+        "bubujka/def": "dev-master",
+        "bubujka/common": "dev-master",
+        "php-activerecord/php-activerecord": "*"
+    }
+}
