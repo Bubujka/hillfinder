@@ -26,6 +26,11 @@
           map.setCenter(pos)
           marker.setPosition(pos)
         })
+        latLngInputs.bind('keyup', function(event){
+          if(event.keyCode == 13){ // Enter key
+            $('.finder-pane__button').click()
+          }
+        })
 
         var defaultLatLng = new google.maps.LatLng(52.2032406, 20.9976958);
 
