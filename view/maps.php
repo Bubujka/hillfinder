@@ -17,6 +17,14 @@
         var latInput = $('input[name=lat]')
         var lngInput = $('input[name=lng]')
 
+        var latLngInputs = $('input[name=lng],input[name=lat]')
+
+        latLngInputs.bind('change keyup', function(){
+          var pos = new google.maps.LatLng(parseFloat(latInput.val()), parseFloat(lngInput.val()))
+          map.setCenter(pos)
+          marker.setPosition(pos)
+        })
+
         var defaultLatLng = new google.maps.LatLng(52.2032406, 20.9976958);
 
         
@@ -46,7 +54,9 @@
           latInput.val(location.lat())
           lngInput.val(location.lng())
           marker.setPosition(location)
-}
+        }
+
+
       });
     </script>
   </head>
