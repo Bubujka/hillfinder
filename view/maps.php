@@ -12,6 +12,7 @@
     <script src="/public/js/main.js"></script>
 
     <script type="text/javascript">
+
       $(function() {
         
         var latInput = $('input[name=lat]')
@@ -57,7 +58,14 @@
           marker.setPosition(location)
         }
         $('.finder-pane__button').click(function(){
-          $('.finder-pane__height').slideDown();
+          $.get('/get_point_height', { latitude: marker.getPosition().lat(), longitude: marker.getPosition().lng()} ,
+            function(data){
+              $('.finder-pane__height__big').html(data + ' m.')
+                $('.finder-pane__last5place').load('/last5_block', function(){
+                  $('.finder-pane__last5').highlight()
+                });
+              $('.finder-pane__height').slideDown();
+            });
         })
       });
     </script>
@@ -82,7 +90,7 @@
 
       <input class='finder-pane__button' type='button' value='Check height'>
 
-      <?=view('last5')?>
+      <div class='finder-pane__last5place'><?=view('last5')?></div>
 
     </div>
     

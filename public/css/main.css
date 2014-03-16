@@ -16,9 +16,9 @@ body {
   top: 40px;
 }
 .finder-pane__last5 {
-  padding-top: 15px;
+  padding: 15px 0px;
   width: 350px;
-  background: #fdfbec;
+  background: #fff;
   margin-top: 10px;
   border-radius: 3px;
 }
@@ -59,10 +59,12 @@ body {
 }
 .finder-pane__last5__time {
   display: inline-block;
+  color: #666;
 }
 .finder-pane__last5__ip {
   padding-left: 20px;
   display: inline-block;
+  color: #666;
 }
 .finder-pane__inputs span {
   width: 120px;
