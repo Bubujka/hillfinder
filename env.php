@@ -2,6 +2,8 @@
 dev_hosts('localhost:4000');
 bu\def\fc_path(__DIR__.'/cache/functions');
 
+def_accessor('google_api_key', 'AIzaSyCIzVO0BavzHnzB4q3t_M7u-PhFSnEJ3lI');
+
 ActiveRecord\Config::initialize(function($cfg){
   $cfg->set_model_directory(__DIR__.'/models');
   
