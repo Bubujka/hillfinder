@@ -93,6 +93,7 @@
       <input class='finder-pane__button' type='button' value='Check height'>
 
       <div class='finder-pane__last5place'><?=view('last5')?></div>
+      <div class='finder-pane__statsplace'><?=view('stats')?></div>
 
     </div>
     

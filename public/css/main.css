@@ -26,6 +26,22 @@ body {
   right: 100px;
   top: 40px;
 }
+.finder-pane__stats {
+  padding: 15px 0px;
+  width: 350px;
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+.finder-pane__stats__total {
+  padding: 5px 15px;
+}
+.finder-pane__stats__highest {
+  padding: 5px 15px;
+}
+.finder-pane__stats__highest_location {
+  padding: 5px 15px;
+}
 .finder-pane__last5 {
   padding: 15px 0px;
   width: 350px;
