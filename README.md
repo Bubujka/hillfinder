@@ -35,3 +35,9 @@ And start server:
 ```bash
 ./server
 ```
+
+Credits
+-------
+
+* [map marker icon](http://allur.co/psd/map-markers-flags-pins-psd/)
+

@@ -41,7 +41,8 @@
         var marker = new google.maps.Marker({
           position: map.getCenter(),
           map: map,
-          title: 'Click to zoom'
+          title: 'Click to zoom',
+          icon: '/public/img/marker.png'
         });
 
         latInput.val(defaultLatLng.lat())
