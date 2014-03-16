@@ -21,13 +21,13 @@
 
         latLngInputs.bind('change keyup', function(){
           var pos = new google.maps.LatLng(parseFloat(latInput.val()), parseFloat(lngInput.val()))
+          $('.finder-pane__height').slideUp();
           map.setCenter(pos)
           marker.setPosition(pos)
         })
 
         var defaultLatLng = new google.maps.LatLng(52.2032406, 20.9976958);
 
-        
         var mapOptions = {
           center: defaultLatLng,
           zoom: 18,
@@ -53,18 +53,34 @@
         function placeMarker(location) {
           latInput.val(location.lat())
           lngInput.val(location.lng())
+          $('.finder-pane__height').slideUp();
           marker.setPosition(location)
         }
-
-
+        $('.finder-pane__button').click(function(){
+          $('.finder-pane__height').slideDown();
+        })
       });
     </script>
   </head>
   <body>
     <div id="map_canvas" style="width:100%; height:100%"></div>
-    <div id='finder-pane'>
-      Latitude: <input type='text' name='lat'><br>
-      Longitude: <input type='text' name='lng'>
+    <div class='finder-pane'>
+      <div class='finder-pane__inputs'>
+        <label>
+          <span>Latitude:</span> <input type='text' name='lat'><br>
+        </label>
+        <label>
+          <span>Longitude:</span> <input type='text' name='lng'>
+        </label>
+      </div>
+      <div class='finder-pane__height'>
+        <div class='finder-pane__height__big'>
+          1232 m.
+        </div>
+        This point is located 11232 meters above the sea level.
+      </div>
+      <input class='finder-pane__button' type='button' value='Check height'>
     </div>
+    
   </body>
 </html>

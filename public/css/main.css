@@ -9,9 +9,37 @@ body {
 #map_canvas {
   height: 100%;
 }
-#finder-pane {
+.finder-pane {
   z-index: 3;
   position: absolute;
   right: 100px;
-  top: 20px;
+  top: 40px;
+}
+.finder-pane__inputs span {
+  width: 120px;
+  font-size: 18px;
+  font-family: arial;
+  display: inline-block;
+  text-shadow: 1px 1px 2px #fafafa;
+}
+.finder-pane__inputs input {
+  padding: 7px 10px;
+  font-size: 14px;
+}
+.finder-pane__height {
+  font-size: 13px;
+  padding: 30px 0px;
+  display: none;
+  width: 300px;
+}
+.finder-pane__height__big {
+  font-family: georgia;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 46px;
+  text-align: center;
+  padding: 10px 0px;
+}
+.finder-pane__button {
+  padding: 7px 10px;
 }
