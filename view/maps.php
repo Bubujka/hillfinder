@@ -15,12 +15,14 @@
     <link rel="stylesheet" type="text/css" href="/public/css/nprogress.css">
 
     <script type="text/javascript">
-
       $(function() {
-        
+        var map, marker
+
+        // Default map position
+        var defaultLatLng = new google.maps.LatLng(52.2032406, 20.9976958);
+
         var latInput = $('input[name=lat]')
         var lngInput = $('input[name=lng]')
-
         var latLngInputs = $('input[name=lng],input[name=lat]')
 
         latLngInputs.bind('change keyup', function(){
@@ -29,22 +31,20 @@
           map.setCenter(pos)
           marker.setPosition(pos)
         })
+
         latLngInputs.bind('keyup', function(event){
-          if(event.keyCode == 13){ // Enter key
+          if(event.keyCode == 13) // Enter key
             $('.finder-pane__button').click()
-          }
+          
         })
 
-        var defaultLatLng = new google.maps.LatLng(52.2032406, 20.9976958);
 
-        var mapOptions = {
-          center: defaultLatLng,
-          zoom: 14,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
+        var map = new google.maps.Map(
+          document.getElementById("map_canvas"),
+          {
+            center: defaultLatLng,
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP });
 
         var marker = new google.maps.Marker({
           position: map.getCenter(),
@@ -57,15 +57,12 @@
         lngInput.val(defaultLatLng.lng())
 
         google.maps.event.addListener(map, 'click', function(event) {
-          placeMarker(event.latLng);
+          latInput.val(event.latLng.lat())
+          lngInput.val(event.latLng.lng())
+          $('.finder-pane__height').slideUp();
+          marker.setPosition(event.latLng)
         });
 
-        function placeMarker(location) {
-          latInput.val(location.lat())
-          lngInput.val(location.lng())
-          $('.finder-pane__height').slideUp();
-          marker.setPosition(location)
-        }
         $('.finder-pane__button').click(function(){
           NProgress.start();
 
