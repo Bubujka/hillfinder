@@ -2,81 +2,116 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400italic' rel='stylesheet' type='text/css'>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=<?=google_api_key()?>&sensor=false">
-    </script>
-
-    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
-    <script src="/public/js/main.js"></script>
-
-    <script src="/public/js/nprogress.js"></script>
-    <link rel="stylesheet" type="text/css" href="/public/css/nprogress.css">
-
+    <?=view('_head')?>
     <script type="text/javascript">
       $(function() {
         var map, marker
-
-        // Default map position
-        var defaultLatLng = new google.maps.LatLng(52.2032406, 20.9976958);
-
-        var latInput = $('input[name=lat]')
-        var lngInput = $('input[name=lng]')
-        var latLngInputs = $('input[name=lng],input[name=lat]')
-
-        latLngInputs.bind('change keyup', function(){
-          var pos = new google.maps.LatLng(parseFloat(latInput.val()), parseFloat(lngInput.val()))
-          $('.finder-pane__height').slideUp();
-          map.setCenter(pos)
-          marker.setPosition(pos)
-        })
-
-        latLngInputs.bind('keyup', function(event){
-          if(event.keyCode == 13) // Enter key
-            $('.finder-pane__button').click()
           
-        })
+        // Default map position
+        var lat = 52.2032406, 
+            lng = 20.9976958
 
+        // Marker icon
+        var icon = '/public/img/marker.png'       
 
-        var map = new google.maps.Map(
-          document.getElementById("map_canvas"),
-          {
-            center: defaultLatLng,
-            zoom: 14,
-            mapTypeId: google.maps.MapTypeId.ROADMAP });
+        //  ------------------------
+        
+        var _defaultLatLng = new google.maps.LatLng(lat, lng);
 
-        var marker = new google.maps.Marker({
-          position: map.getCenter(),
-          map: map,
-          title: 'Click to zoom',
-          icon: '/public/img/marker.png'
-        });
+        _bind_input_actions()
+        _init_map(_defaultLatLng)
+        _init_marker()
+        _update_inputs_values(_defaultLatLng)
+        _bind_click_on_map()
+        _bind_click_on_main_button()
+        
+        //  ------------------------
+        
+        function _bind_input_actions(){
+          $('input[name=lng],input[name=lat]').bind('change keyup', function(){
+            var pos = new google.maps.LatLng(parseFloat($('input[name=lat]').val()), parseFloat($('input[name=lng]').val()))
+            $('.finder-pane__height').slideUp();
+            _set_map_position(pos)
+            _set_marker_position(pos)
+          })
 
-        latInput.val(defaultLatLng.lat())
-        lngInput.val(defaultLatLng.lng())
+          $('input[name=lng],input[name=lat]').bind('keyup', function(event){
+            if(event.keyCode == 13) // Enter key
+              $('.finder-pane__button').click()
+            
+          })
+        }
 
-        google.maps.event.addListener(map, 'click', function(event) {
-          latInput.val(event.latLng.lat())
-          lngInput.val(event.latLng.lng())
-          $('.finder-pane__height').slideUp();
-          marker.setPosition(event.latLng)
-        });
+        function _init_map(pos){
+          map = new google.maps.Map(
+            document.getElementById("map_canvas"),
+            {
+              center: pos,
+              zoom: 14,
+              mapTypeId: google.maps.MapTypeId.ROADMAP });
+        }
 
-        $('.finder-pane__button').click(function(){
-          NProgress.start();
+        function _init_marker(){
+          marker = new google.maps.Marker({
+            position: map.getCenter(),
+            map: map,
+            title: 'Click to zoom',
+            icon: icon
+          });
+        }
 
-          $.get('/get_point_height', { latitude: marker.getPosition().lat(), longitude: marker.getPosition().lng()} ,
-            function(data){
-              NProgress.inc();
-              $('.finder-pane__height__big').html(data + ' m.')
-              $('.finder-pane__data_block').load('/data_block', function(){
-                NProgress.done();
-                $('.finder-pane__last5, .finder-pane__stats').highlight()
+        function _update_inputs_values(latlng){
+          $('input[name=lat]').val(latlng.lat())
+          $('input[name=lng]').val(latlng.lng())
+        }
+
+        function _bind_click_on_map(){
+          google.maps.event.addListener(map, 'click', function(event) {
+            _update_inputs_values(event.latLng)
+            _hide_height_pane()
+            _set_marker_position(event.latLng)
+          });
+        }
+
+        function _bind_click_on_main_button(){
+          $('.finder-pane__button').click(function(){
+            NProgress.start();
+            $.get('/get_point_height', { latitude: marker.getPosition().lat(), longitude: marker.getPosition().lng()} ,
+              function(data){
+                NProgress.inc();
+                _update_height_value(data)
+                _update_data_block()
               });
-              $('.finder-pane__height').slideDown();
-            });
-        })
+          })
+        }
+        
+        // -----------------------------
+        
+        function _hide_height_pane(){
+          $('.finder-pane__height').slideUp();
+        }
+        function _show_height_pane(){
+          $('.finder-pane__height').slideDown();
+        }
+        function _flash_updated_blocks(){
+          $('.finder-pane__last5, .finder-pane__stats').highlight()
+        }
+        function _update_data_block(){
+          $('.finder-pane__data_block').load('/data_block', function(){
+            NProgress.done();
+            _show_height_pane()
+            _flash_updated_blocks()
+          });
+        }
+        function _update_height_value(data){
+          $('.finder-pane__height__big').html(data + ' m.')
+        }
+        function _set_marker_position(pos){
+          marker.setPosition(pos)
+        }
+        function _set_map_position(pos){
+          map.setCenter(pos)
+        }
       });
     </script>
   </head>
