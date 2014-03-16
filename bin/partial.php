@@ -1,4 +1,5 @@
 <?php
-controller('last5_block', function(){
+controller('data_block', function(){
   echo view('last5');
+  echo view('stats');
 });

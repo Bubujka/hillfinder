@@ -62,8 +62,8 @@
           $.get('/get_point_height', { latitude: marker.getPosition().lat(), longitude: marker.getPosition().lng()} ,
             function(data){
               $('.finder-pane__height__big').html(data + ' m.')
-                $('.finder-pane__last5place').load('/last5_block', function(){
-                  $('.finder-pane__last5').highlight()
+                $('.finder-pane__data_block').load('/data_block', function(){
+                  $('.finder-pane__last5, .finder-pane__stats').highlight()
                 });
               $('.finder-pane__height').slideDown();
             });
@@ -92,8 +92,8 @@
 
       <input class='finder-pane__button' type='button' value='Check height'>
 
-      <div class='finder-pane__last5place'><?=view('last5')?></div>
-      <div class='finder-pane__statsplace'><?=view('stats')?></div>
+      
+      <div class='finder-pane__data_block'><?=view('last5')?><?=view('stats')?></div>
 
     </div>
     
