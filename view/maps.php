@@ -2,11 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 100% }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
     <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=<?=google_api_key()?>&sensor=false">
     </script>

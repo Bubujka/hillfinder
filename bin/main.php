@@ -1,5 +1,5 @@
 <?php
-layout_controller('index', function(){
+controller('index', function(){
   echo view('maps');
 });
 
