@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
     <script src="/public/js/main.js"></script>
 
+    <script src="/public/js/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/nprogress.css">
+
     <script type="text/javascript">
 
       $(function() {
@@ -64,8 +67,11 @@
           marker.setPosition(location)
         }
         $('.finder-pane__button').click(function(){
+          NProgress.start();
+
           $.get('/get_point_height', { latitude: marker.getPosition().lat(), longitude: marker.getPosition().lng()} ,
             function(data){
+              NProgress.done();
               $('.finder-pane__height__big').html(data + ' m.')
                 $('.finder-pane__data_block').load('/data_block', function(){
                   $('.finder-pane__last5, .finder-pane__stats').highlight()
