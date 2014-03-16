@@ -56,7 +56,6 @@ body {
   left: 20px;
 }
 .finder-pane__last5 td {
-  padding-left: 20px;
   padding-top: 1px;
   padding-bottom: 3px;
 }
@@ -87,6 +86,7 @@ body {
   text-align: center;
 }
 .finder-pane__last5__time {
+  margin-left: 20px;
   display: inline-block;
   color: #666;
 }
@@ -108,7 +108,7 @@ body {
 }
 .finder-pane__height {
   font-size: 13px;
-  padding: 30px 0px;
+  padding: 20px 0px;
   display: none;
   width: 300px;
 }
