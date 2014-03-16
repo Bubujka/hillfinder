@@ -71,11 +71,12 @@
 
           $.get('/get_point_height', { latitude: marker.getPosition().lat(), longitude: marker.getPosition().lng()} ,
             function(data){
-              NProgress.done();
+              NProgress.inc();
               $('.finder-pane__height__big').html(data + ' m.')
-                $('.finder-pane__data_block').load('/data_block', function(){
-                  $('.finder-pane__last5, .finder-pane__stats').highlight()
-                });
+              $('.finder-pane__data_block').load('/data_block', function(){
+                NProgress.done();
+                $('.finder-pane__last5, .finder-pane__stats').highlight()
+              });
               $('.finder-pane__height').slideDown();
             });
         })
