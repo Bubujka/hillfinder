@@ -30,7 +30,7 @@
 
         var mapOptions = {
           center: defaultLatLng,
-          zoom: 18,
+          zoom: 14,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -73,13 +73,17 @@
           <span>Longitude:</span> <input type='text' name='lng'>
         </label>
       </div>
+
       <div class='finder-pane__height'>
         <div class='finder-pane__height__big'>
           1232 m.
         </div>
-        This point is located 11232 meters above the sea level.
       </div>
+
       <input class='finder-pane__button' type='button' value='Check height'>
+
+      <?=view('last5')?>
+
     </div>
     
   </body>
