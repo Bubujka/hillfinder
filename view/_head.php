@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="/public/css/main.css">
 <script src="/public/js/main.js"></script>
+<script src="/public/js/app.js"></script>
 
 <script src="/public/js/nprogress.js"></script>
 <link rel="stylesheet" type="text/css" href="/public/css/nprogress.css">
