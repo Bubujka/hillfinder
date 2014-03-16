@@ -1,12 +1,13 @@
-.finder-pane__stats
-  .finder-pane__stats__title
-    Statistics:
-  .finder-pane__stats__total
-    Total no of checked locations: <b>#{HeightRequest::count()}</b>
-  .finder-pane__stats__highest
-    No of locations which are located within <b>10%&nbsp;margin</b> from max height: <b>#{HeightRequest::count_highest()}</b>
-  -$highest = HeightRequest::find_highest()
-  -if($highest)
-    .finder-pane__stats__highest_location
-      Highest location is <b>#{$highest->latitude}, #{$highest->longitude}</b> <b>#{$highest->height} m.</b>
+-if($cnt = HeightRequest::count())
+  .finder-pane__stats
+    .finder-pane__stats__title
+      Statistics:
+    .finder-pane__stats__total
+      Total no of checked locations: <b>#{$cnt}</b>
+    .finder-pane__stats__highest
+      No of locations which are located within <b>10%&nbsp;margin</b> from max height: <b>#{HeightRequest::count_highest()}</b>
+    -$highest = HeightRequest::find_highest()
+    -if($highest)
+      .finder-pane__stats__highest_location
+        Highest location is <b>#{$highest->latitude}, #{$highest->longitude}</b> <b>#{$highest->height} m.</b>
 

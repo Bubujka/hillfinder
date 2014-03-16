@@ -11,7 +11,8 @@ class HeightRequest extends Model{
 
   static function count_highest(){
     $highest = static::find_highest();
-
+    if(!$highest)
+      return 0;
     $min = $highest->height * 0.9;
     $condition = array('height > ? and id != ? ', $min, $highest->id);
 
