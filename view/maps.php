@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400italic' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=<?=google_api_key()?>&sensor=false">
@@ -71,6 +71,7 @@
     </script>
   </head>
   <body>
+    <div class='site-name'>Hill Finder</div>
     <div id="map_canvas" style="width:100%; height:100%"></div>
     <div class='finder-pane'>
       <div class='finder-pane__inputs'>

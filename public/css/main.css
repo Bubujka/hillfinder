@@ -9,6 +9,17 @@ body {
 #map_canvas {
   height: 100%;
 }
+.site-name {
+  font-size: 46px;
+  position: absolute;
+  top: 12px;
+  z-index: 3;
+  left: 100px;
+  font-family: 'Lobster Two', cursive;
+  font-style: italic;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
 .finder-pane {
   z-index: 3;
   position: absolute;
@@ -36,6 +47,8 @@ body {
 .finder-pane__last5 th {
   padding-bottom: 8px;
   text-align: center;
+  font-family: georgia;
+  font-style: italic;
 }
 .finder-pane__last5__nothing {
   text-align: center;
@@ -84,7 +97,7 @@ body {
   width: 300px;
 }
 .finder-pane__height__big {
-  font-family: georgia;
+  font-family: 'Lobster Two', cursive;
   font-style: italic;
   font-weight: normal;
   font-size: 46px;
