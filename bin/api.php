@@ -12,10 +12,11 @@ json_controller('get_point_height', function(){
   
   $height = earthtools\get_point_height($_GET['latitude'], $_GET['longitude']);
 
-  HeightRequest::create(array(
-    'latitude' => $_GET['latitude'],
-    'longitude' => $_GET['longitude'],
-    'height' => $height));
+  if($height !== null)
+    HeightRequest::create(array(
+      'latitude' => $_GET['latitude'],
+      'longitude' => $_GET['longitude'],
+      'height' => $height));
 
   return $height;
 });

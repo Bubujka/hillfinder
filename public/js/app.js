@@ -98,7 +98,10 @@ function app(){
     });
   }
   function _update_height_value(data){
-    $('.finder-pane__height__big').html(data + ' m.')
+    if(data === null)
+      $('.finder-pane__height__big').html('No info =(')
+    else
+      $('.finder-pane__height__big').html(data + ' m.')
   }
   function _set_marker_position(pos){
     marker.setPosition(pos)
