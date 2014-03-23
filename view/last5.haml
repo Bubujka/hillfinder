@@ -36,4 +36,4 @@
               .finder-pane__last5__time
                 Time: #{$v->created->format('j.n.Y H:i')}
               .finder-pane__last5__ip
-                Ip: #{$v->ip}
+                Ip: #{mask_ip($v->ip)}
